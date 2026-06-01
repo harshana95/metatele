@@ -35,7 +35,7 @@ const heroSceneIds = [1, 2, 3, 6, 9, 12, 14, 16];
 // Map type key → { prefix, label }
 const heroInputTypes = {
   color:  { prefix: 'blurc',    label: 'Color cue I<sub>c</sub> (input)' },
-  struct: { prefix: 'Is',       label: 'Structure I<sub>s</sub> (input)' },
+  struct: { prefix: 'BLUR_S',   label: 'Structure I<sub>s</sub> (input)' },
   gt:     { prefix: 'GT',       label: 'Ground Truth' },
 };
 
