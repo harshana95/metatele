@@ -32,33 +32,64 @@ function initImageCompare() {
 /* ===== Hero scene switcher ===== */
 const heroSceneIds = [1, 2, 3, 6, 9, 12, 14, 16];
 
+// Map type key → { prefix, label }
+const heroInputTypes = {
+  color:  { prefix: 'blurc',    label: 'Color cue I<sub>c</sub> (input)' },
+  struct: { prefix: 'Is',       label: 'Structure I<sub>s</sub> (input)' },
+  gt:     { prefix: 'GT',       label: 'Ground Truth' },
+};
+
 function initHeroScenes() {
-  const controls = document.getElementById('hero-scene-controls');
-  const container = document.getElementById('hero-compare');
-  if (!controls || !container) return;
+  const sceneControls = document.getElementById('hero-scene-controls');
+  const typeControls  = document.getElementById('hero-type-controls');
+  const container     = document.getElementById('hero-compare');
+  if (!sceneControls || !container) return;
 
   const baseImg    = container.querySelector('.base-img');
   const overlayImg = container.querySelector('.compare-overlay img');
   const overlay    = container.querySelector('.compare-overlay');
   const divider    = container.querySelector('.compare-divider');
+  const labelLeft  = document.getElementById('hero-label-left');
 
-  // Build buttons dynamically
-  controls.innerHTML = '';
+  let activeType  = 'color';
+  let activeSceneId = heroSceneIds[0];
+
+  function updateSlider() {
+    const { prefix, label } = heroInputTypes[activeType];
+    overlay.style.width = '50%';
+    divider.style.left  = '50%';
+    baseImg.src    = `images/ours_algo_${activeSceneId}.png`;
+    overlayImg.src = `images/${prefix}_${activeSceneId}.png`;
+    overlayImg.style.width = container.offsetWidth + 'px';
+    if (labelLeft) labelLeft.innerHTML = label;
+  }
+
+  // Wire up type buttons
+  if (typeControls) {
+    typeControls.querySelectorAll('.scene-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        typeControls.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeType = btn.dataset.type;
+        updateSlider();
+      });
+    });
+  }
+
+  // Build scene buttons dynamically
+  sceneControls.innerHTML = '';
   heroSceneIds.forEach((id, idx) => {
     const btn = document.createElement('button');
     btn.className = 'scene-btn' + (idx === 0 ? ' active' : '');
     btn.textContent = 'Scene ' + (idx + 1);
     btn.dataset.sceneId = id;
     btn.addEventListener('click', () => {
-      controls.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('active'));
+      sceneControls.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      overlay.style.width = '50%';
-      divider.style.left  = '50%';
-      baseImg.src    = `images/ours_algo_${id}.png`;
-      overlayImg.src = `images/blurc_${id}.png`;
-      overlayImg.style.width = container.offsetWidth + 'px';
+      activeSceneId = id;
+      updateSlider();
     });
-    controls.appendChild(btn);
+    sceneControls.appendChild(btn);
   });
 }
 

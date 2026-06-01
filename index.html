@@ -96,8 +96,15 @@
 
     <!-- Hover comparison -->
     <div style="margin-top: 40px; text-align: center;">
-      <h3 style="font-size:1.05rem; font-weight:700; margin-bottom:6px;">Color Cue (I<sub>c</sub>) vs. MetaTele Reconstruction</h3>
-      <p class="section-subtitle" style="margin-bottom:12px;">Move your mouse across the image to compare. Switch scenes below.</p>
+      <h3 style="font-size:1.05rem; font-weight:700; margin-bottom:6px;" id="hero-compare-title">Color Cue (I<sub>c</sub>) vs. MetaTele Reconstruction</h3>
+      <p class="section-subtitle" style="margin-bottom:12px;">Move your mouse across the image to compare. Switch input type or scene below.</p>
+
+      <!-- Input-type toggle buttons -->
+      <div class="comparison-controls" style="justify-content:center; margin-bottom:8px;" id="hero-type-controls">
+        <button class="scene-btn active" data-type="color">Color cue I<sub>c</sub></button>
+        <button class="scene-btn" data-type="struct">Structure I<sub>s</sub></button>
+        <button class="scene-btn" data-type="gt">Ground Truth</button>
+      </div>
 
       <!-- Scene selector buttons (populated by JS) -->
       <div class="comparison-controls" style="justify-content:center; margin-bottom:16px;" id="hero-scene-controls"></div>
@@ -105,7 +112,7 @@
       <div class="image-compare" id="hero-compare">
         <!-- Bottom layer: MetaTele reconstruction -->
         <img class="base-img" src="images/ours_algo_1.png" alt="MetaTele reconstruction" />
-        <!-- Top overlay: color cue (blurry input) -->
+        <!-- Top overlay: left-side input -->
         <div class="compare-overlay">
           <img src="images/blurc_1.png" alt="Color cue Ic" />
         </div>
@@ -118,10 +125,10 @@
             </svg>
           </div>
         </div>
-        <span class="compare-label left">Color cue I<sub>c</sub> (input)</span>
+        <span class="compare-label left" id="hero-label-left">Color cue I<sub>c</sub> (input)</span>
         <span class="compare-label right">MetaTele output</span>
       </div>
-      <p class="compare-hint">Drag or hover to reveal. Left: raw color cue (chromatic aberrations). Right: MetaTele's fused reconstruction.</p>
+      <p class="compare-hint">Drag or hover to reveal. Right side always shows MetaTele's reconstruction.</p>
     </div>
   </div>
 </section>
