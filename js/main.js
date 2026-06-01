@@ -21,7 +21,6 @@ function initImageCompare() {
     window.addEventListener('resize', syncImageWidth);
 
     container.addEventListener('mousemove', e => setPosition(e.clientX));
-    container.addEventListener('mouseenter', e => setPosition(e.clientX));
     container.addEventListener('touchstart', e => setPosition(e.touches[0].clientX), { passive: true });
     container.addEventListener('touchmove', e => {
       e.preventDefault();
@@ -31,6 +30,8 @@ function initImageCompare() {
 }
 
 /* ===== Hero scene switcher ===== */
+const heroSceneIds = [1, 2, 3, 6, 9, 12, 14, 16];
+
 function initHeroScenes() {
   const controls = document.getElementById('hero-scene-controls');
   const container = document.getElementById('hero-compare');
@@ -41,26 +42,23 @@ function initHeroScenes() {
   const overlay    = container.querySelector('.compare-overlay');
   const divider    = container.querySelector('.compare-divider');
 
-  controls.querySelectorAll('.scene-btn').forEach(btn => {
+  // Build buttons dynamically
+  controls.innerHTML = '';
+  heroSceneIds.forEach((id, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'scene-btn' + (idx === 0 ? ' active' : '');
+    btn.textContent = 'Scene ' + (idx + 1);
+    btn.dataset.sceneId = id;
     btn.addEventListener('click', () => {
-      const scene = btn.dataset.scene;
       controls.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      // Reset divider to center
       overlay.style.width = '50%';
       divider.style.left  = '50%';
-
-      // Swap images
-      baseImg.src    = `images/scene${scene}_recon.png`;
-      overlayImg.src = `images/scene${scene}_struct.png`;
-
-      // Re-sync overlay image width after load
-      baseImg.onload = () => {
-        overlayImg.style.width = container.offsetWidth + 'px';
-      };
+      baseImg.src    = `images/ours_algo_${id}.png`;
+      overlayImg.src = `images/blurc_${id}.png`;
       overlayImg.style.width = container.offsetWidth + 'px';
     });
+    controls.appendChild(btn);
   });
 }
 
