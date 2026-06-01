@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MetaTele: Compact Refractive Metasurface Computational Telephoto Camera</title>
+  <meta name="description" content="MetaTele — a novel optics-algorithm co-design achieving an unprecedented telephoto ratio of 0.44 with a 13 mm total track length for full RGB imaging." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav>
+  <div class="container">
+    <a class="nav-brand" href="#hero">MetaTele</a>
+    <ul class="nav-links">
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#system">System</a></li>
+      <li><a href="#method">Method</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#bibtex">BibTeX</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section id="hero">
+  <div class="container">
+    <!-- Venue badge — update when venue is confirmed -->
+    <span class="venue-badge">Optica &nbsp;·&nbsp; 2025</span>
+
+    <h1 class="paper-title">
+      MetaTele: Compact Refractive Metasurface&nbsp;Computational Telephoto Camera
+    </h1>
+
+    <p class="co-first">† Co-first authors with equal contribution</p>
+    <p class="authors">
+      <a href="#">Harshana Weligampola</a><sup>1,†</sup>,&ensp;
+      <a href="#">Yuanrui Chen</a><sup>1,†</sup>,&ensp;
+      <a href="#">Abhiram Gnanasambandam</a><sup>2</sup>,&ensp;
+      <a href="#">Dilshan Godaliyadda</a><sup>2</sup>,<br>
+      <a href="#">Hamid R. Sheikh</a><sup>2</sup>,&ensp;
+      <a href="#">Stanley H. Chan</a><sup>1</sup>,&ensp;
+      <a href="mailto:qiguo@purdue.edu">Qi Guo</a><sup>1,*</sup>
+    </p>
+
+    <p class="affil">
+      <sup>1</sup>Elmore Family School of Electrical and Computer Engineering, Purdue University&emsp;
+      <sup>2</sup>Samsung Research America
+    </p>
+
+    <!-- Resource links — fill in real URLs when ready -->
+    <div class="resource-links">
+      <a class="btn btn-primary" href="#" target="_blank" rel="noopener">
+        <!-- paper icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Paper
+      </a>
+      <a class="btn btn-outline" href="#" target="_blank" rel="noopener">
+        <!-- arxiv icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        arXiv
+      </a>
+      <a class="btn btn-outline" href="#" target="_blank" rel="noopener">
+        <!-- github icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        Code
+      </a>
+      <a class="btn btn-outline" href="#" target="_blank" rel="noopener">
+        <!-- dataset icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        Dataset
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Teaser ===== -->
+<section id="teaser" style="padding-top: 40px; padding-bottom: 40px;">
+  <div class="container">
+    <div class="figure-block">
+      <img class="teaser-img" src="images/teaser.png" alt="MetaTele system overview" />
+      <p class="caption">
+        <strong>MetaTele overview.</strong>
+        (a) The proposed MetaTele imaging system uses a hybrid refractive–metasurface assembly to form a compact telephoto architecture.
+        (b) Two complementary raw measurements are captured sequentially: a <em>structure image I<sub>s</sub></em> under a narrow spectral band (sharp, monochrome) and a <em>color cue I<sub>c</sub></em> over the full visible spectrum (color but aberrated).
+        A one-step diffusion model fuses these into a high-quality RGB telephoto image.
+        (c–d) MetaTele achieves a telephoto ratio of <strong>0.44</strong> — the lowest reported for full-color RGB imaging.
+      </p>
+    </div>
+
+    <!-- Hover comparison -->
+    <div style="margin-top: 40px; text-align: center;">
+      <h3 style="font-size:1.05rem; font-weight:700; margin-bottom:6px;">Structure Image (I<sub>s</sub>) vs. MetaTele Reconstruction</h3>
+      <p class="section-subtitle" style="margin-bottom:12px;">Move your mouse across the image to compare. Switch scenes below.</p>
+
+      <!-- Scene selector buttons -->
+      <div class="comparison-controls" style="justify-content:center; margin-bottom:16px;" id="hero-scene-controls">
+        <button class="scene-btn active" data-scene="1">Scene 1</button>
+        <button class="scene-btn" data-scene="2">Scene 2</button>
+        <button class="scene-btn" data-scene="3">Scene 3</button>
+        <button class="scene-btn" data-scene="4">Scene 4</button>
+      </div>
+
+      <div class="image-compare" id="hero-compare">
+        <!-- Bottom layer: MetaTele reconstruction -->
+        <img class="base-img" src="images/scene1_recon.png" alt="MetaTele reconstruction" />
+        <!-- Top overlay: structure image -->
+        <div class="compare-overlay">
+          <img src="images/scene1_struct.png" alt="Structure image Is" />
+        </div>
+        <!-- Divider + handle -->
+        <div class="compare-divider">
+          <div class="compare-handle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+              <polyline points="9 18 15 12 9 6" transform="translate(6,0)"></polyline>
+            </svg>
+          </div>
+        </div>
+        <span class="compare-label left">Structure image I<sub>s</sub></span>
+        <span class="compare-label right">MetaTele output</span>
+      </div>
+      <p class="compare-hint">Drag or hover to reveal. Left: raw narrowband structure image (monochrome). Right: MetaTele's fused color reconstruction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Abstract ===== -->
+<section id="abstract">
+  <div class="container">
+    <h2 class="section-title">Abstract</h2>
+    <p class="section-subtitle">TL;DR — a metasurface + lens system that fits telephoto in a smartphone body, with a diffusion model doing the color reconstruction.</p>
+    <div class="abstract-text">
+      Smartphone cameras face fundamental form-factor constraints that limit their optical magnification,
+      primarily due to the difficulty of reducing a lens assembly's <em>telephoto ratio</em>
+      — the ratio between total track length (TTL) and effective focal length (EFL).
+      Currently, conventional refractive optics struggle to achieve a telephoto ratio below 0.5 without
+      requiring multiple bulky elements to correct optical aberrations.
+      In this paper, we introduce <strong>MetaTele</strong>, a novel optics-algorithm co-design that breaks
+      this bottleneck.
+      MetaTele explicitly decouples the acquisition of scene structure and color information.
+      First, it utilizes a compact refractive-metasurface optical assembly to capture a fine-detail
+      <em>structure image</em> under a narrow wavelength band, inherently avoiding severe chromatic aberrations.
+      Second, it captures a broadband <em>color cue</em> using the same optics; although this cue is heavily
+      corrupted by chromatic aberrations, it retains sufficient spectral information to guide post-processing.
+      We then employ a custom one-step diffusion model to computationally fuse these two raw measurements,
+      successfully colorizing the structure image while correcting for system aberrations.
+      We demonstrate a MetaTele prototype achieving an unprecedented telephoto ratio of <strong>0.44</strong>
+      with a TTL of just <strong>13 mm</strong> for RGB imaging, paving the way for DSLR-level telephoto
+      capabilities within smartphone form factors.
+    </div>
+
+    <!-- Key specs -->
+    <div class="key-specs">
+      <div class="spec-card">
+        <div class="spec-value">0.44</div>
+        <div class="spec-label">Telephoto ratio (TTL/EFL)</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-value">13 mm</div>
+        <div class="spec-label">Total Track Length</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-value">30 mm</div>
+        <div class="spec-label">Effective Focal Length</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-value">2,650</div>
+        <div class="spec-label">Real-world dataset scenes</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-value">532 nm</div>
+        <div class="spec-label">Metasurface design wavelength</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== System ===== -->
+<section id="system">
+  <div class="container">
+    <h2 class="section-title">Optical System</h2>
+    <p class="section-subtitle">A Galilean-telescope assembly: a refractive objective paired with a custom-designed metasurface eyepiece.</p>
+
+    <div class="figure-block">
+      <img src="images/optics.png" alt="MetaTele optical model" style="max-width: 75%;" />
+      <p class="caption" style="margin-top:12px;">
+        <strong>Optical model.</strong> MetaTele consists of a refractive objective lens (L) and a metasurface eyepiece (M) separated by distance <em>m</em>. The assembly magnifies the incident angle of incoming light waves, achieving telephoto compactness.
+      </p>
+    </div>
+
+    <div class="two-col" style="margin-top: 32px;">
+      <div>
+        <h3 style="font-size:1.05rem; font-weight:700; margin-bottom:12px;">Metasurface Design</h3>
+        <p style="font-size:0.94rem; color:var(--muted); line-height:1.8;">
+          The metasurface is composed of Silicon Nitride (SiN) cylindrical nanopillars on a 300 nm × 300 nm grid, with a fixed height of 775 nm. The nanopillar radius uniquely determines the phase modulation at each nanocell, following a quadratic phase profile that acts as a diverging lens (focal length <em>f</em> = −2 mm). This design achieves near-diffraction-limited performance at 532 nm and provides higher tolerance to fabrication imperfections compared to purely refractive alternatives.
+        </p>
+      </div>
+      <div>
+        <h3 style="font-size:1.05rem; font-weight:700; margin-bottom:12px;">Two-Shot Capture</h3>
+        <p style="font-size:0.94rem; color:var(--muted); line-height:1.8;">
+          <strong>Structure image I<sub>s</sub>:</strong> Captured with a 10 nm FWHM bandpass filter at 532 nm. Exploits the metasurface's design wavelength to achieve high spatial fidelity and near-diffraction-limited sharpness — but is monochrome.<br><br>
+          <strong>Color cue I<sub>c</sub>:</strong> Captured without the filter over the full visible spectrum. Contains rich chromatic information but suffers from severe chromatic aberrations due to the wavelength-dependent defocus of the metasurface.
+        </p>
+      </div>
+    </div>
+
+    <div class="figure-block" style="margin-top:36px;">
+      <img src="images/system.png" alt="MetaTele hardware prototype" />
+      <p class="caption" style="margin-top:12px;">
+        <strong>Hardware prototype.</strong>
+        (a) The assembled MetaTele system with Thorlabs AC050-008-A-ML objective lens (f = 7.5 mm, Ø5 mm), custom metasurface eyepiece, and Basler daA3840-45uc RGB sensor — all mounted on 5-axis precision stages.
+        (b) Optical microscope image of the fabricated metasurface. Inset: SEM image at 13,000× magnification.
+        (c) Experimentally measured PSFs for the structure image with MTF inset.
+      </p>
+    </div>
+
+    <div class="two-col" style="margin-top: 32px;">
+      <div class="figure-block" style="margin: 0;">
+        <img src="images/SiN_532nm_phase.jpg" alt="Metasurface phase profile" />
+        <p class="caption" style="margin-top:8px;">Phase delay profile at 532 nm</p>
+      </div>
+      <div class="figure-block" style="margin: 0;">
+        <img src="images/SiN_532nm_trans.jpg" alt="Metasurface transmittance" />
+        <p class="caption" style="margin-top:8px;">Transmittance profile at 532 nm</p>
+      </div>
+    </div>
+
+    <div class="figure-block" style="margin-top: 36px;">
+      <img src="images/sim_raytracing.png" alt="Optical simulation and MTF" />
+      <p class="caption" style="margin-top:12px;">
+        <strong>Simulation results.</strong>
+        (a) Ray-tracing diagram illustrating the Galilean-telescope configuration at different field angles.
+        (b) Modulation transfer functions (MTF) for the corresponding field angles. The system achieves near-diffraction-limited performance on axis.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Method ===== -->
+<section id="method">
+  <div class="container">
+    <h2 class="section-title">Computational Model</h2>
+    <p class="section-subtitle">A one-step diffusion model fuses structure and color to produce high-quality RGB telephoto images.</p>
+
+    <div class="figure-block">
+      <img src="images/architecture.png" alt="MetaTele computational model and training framework" />
+      <p class="caption" style="margin-top:12px;">
+        <strong>Computational framework.</strong>
+        MetaTele uses a generator G<sub>θ</sub> built on a one-step diffusion model Ω. The architecture adopts a variational encoder-decoder with a one-step diffusion module conditioned on text prompts (from I<sub>s</sub>) and learned high-frequency feature embeddings (via adaptor network A). Training combines a data fidelity loss and the novel <strong>High-Frequency Variational Score Distillation (HF-VSD)</strong> loss.
+      </p>
+    </div>
+
+    <div class="two-col" style="margin-top: 36px;">
+      <div>
+        <h3 style="font-size:1.05rem; font-weight:700; margin-bottom:10px;">HF-VSD Loss</h3>
+        <p style="font-size:0.94rem; color:var(--muted); line-height:1.8;">
+          The proposed High-Frequency Variational Score Distillation (HF-VSD) loss builds on standard VSD by applying a 2D high-pass filter in the frequency domain. This explicitly encourages the one-step diffusion model to recover fine texture details guided by the sharp structure image I<sub>s</sub>, while preserving low-frequency color information from the color cue I<sub>c</sub>.
+        </p>
+      </div>
+      <div>
+        <h3 style="font-size:1.05rem; font-weight:700; margin-bottom:10px;">Training Strategy</h3>
+        <p style="font-size:0.94rem; color:var(--muted); line-height:1.8;">
+          Encoder, decoder, and diffusion module are initialized from pre-trained Stable Diffusion weights. Only Low-Rank Adaptation (LoRA) parameters are fine-tuned, keeping computational cost low. The generator parameters θ and the HF-VSD parameters φ are updated alternately following the standard VSD framework.
+        </p>
+      </div>
+    </div>
+
+    <!-- VSD Ablation -->
+    <h3 style="font-size:1.1rem; font-weight:700; margin-top:48px; margin-bottom:16px;">Ablation: Effect of HF-VSD Loss</h3>
+    <p style="font-size:0.9rem; color:var(--muted); margin-bottom:20px;">
+      Comparing no VSD, standard VSD, our HF-VSD loss, and the ground truth on a representative crop.
+    </p>
+    <div class="ablation-grid-wrap">
+      <div class="ablation-grid">
+        <div>
+          <img src="images/noVSD.jpg" alt="Without VSD" loading="lazy" />
+          <p class="comparison-label">w/o VSD</p>
+        </div>
+        <div>
+          <img src="images/standardVSD.jpg" alt="Standard VSD" loading="lazy" />
+          <p class="comparison-label">Standard VSD</p>
+        </div>
+        <div>
+          <img src="images/hpf_vsd_loss.jpg" alt="HF-VSD (Ours)" loading="lazy" />
+          <p class="comparison-label">HF-VSD (Ours)</p>
+        </div>
+        <div>
+          <img src="images/ours.jpg" alt="Ours (full)" loading="lazy" />
+          <p class="comparison-label">Ours (full)</p>
+        </div>
+        <div>
+          <img src="images/gt.jpg" alt="Ground Truth" loading="lazy" />
+          <p class="comparison-label">Ground Truth</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Results ===== -->
+<section id="results">
+  <div class="container">
+    <h2 class="section-title">Results</h2>
+    <p class="section-subtitle">Quantitative and qualitative comparisons against prior metasurface-based imaging systems.</p>
+
+    <!-- ===== System Comparison ===== -->
+    <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:8px;">System Comparison</h3>
+    <p style="font-size:0.9rem; color:var(--muted); margin-bottom:20px;">
+      MetaTele vs. prior metasurface-based cameras (Yang et al. 2022, Tseng et al. 2021, Pinilla et al. 2023) on simulated measurements from the Flickr2K dataset. Click a scene to compare.
+    </p>
+
+    <div id="sys-comparison">
+      <div class="comparison-controls"></div>
+      <div class="sys-grid-wrap">
+        <div class="sys-grid"></div>
+      </div>
+    </div>
+
+    <!-- Metrics table -->
+    <div class="metrics-table-wrap">
+      <table class="metrics">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>PSNR ↑</th>
+            <th>SSIM ↑</th>
+            <th>LPIPS ↓</th>
+            <th>DISTS ↓</th>
+            <th>FID ↓</th>
+            <th>NIQE ↓</th>
+            <th>MUSIQ ↑</th>
+            <th>MANIQA ↑</th>
+            <th>CLIPIQA ↑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Color cue</td>
+            <td>13.27</td><td>0.383</td><td>0.849</td><td>0.527</td>
+            <td>372.6</td><td>10.63</td><td>17.74</td><td>0.171</td><td>0.233</td>
+          </tr>
+          <tr>
+            <td>Yang et al.</td>
+            <td>15.01</td><td>0.443</td><td>0.543</td><td>0.339</td>
+            <td>192.4</td><td>5.99</td><td>37.02</td><td>0.203</td><td>0.240</td>
+          </tr>
+          <tr>
+            <td>Tseng et al.</td>
+            <td class="rank-1">24.56</td><td class="rank-1">0.803</td><td class="rank-2">0.301</td><td class="rank-2">0.194</td>
+            <td class="rank-2">125.0</td><td class="rank-2">4.75</td><td class="rank-2">46.98</td><td class="rank-2">0.238</td><td class="rank-2">0.393</td>
+          </tr>
+          <tr>
+            <td>Pinilla et al.</td>
+            <td class="rank-2">24.54</td><td class="rank-2">0.707</td><td class="rank-3">0.387</td><td class="rank-3">0.211</td>
+            <td class="rank-3">163.6</td><td class="rank-3">5.23</td><td>35.22</td><td class="rank-3">0.209</td><td class="rank-3">0.266</td>
+          </tr>
+          <tr class="best-row">
+            <td>Ours</td>
+            <td class="rank-3">21.95</td><td class="rank-3">0.629</td><td class="rank-1">0.204</td><td class="rank-1">0.140</td>
+            <td class="rank-1">108.9</td><td class="rank-1">3.98</td><td class="rank-1">61.09</td><td class="rank-1">0.375</td><td class="rank-1">0.512</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.78rem; color:var(--muted); margin-top:8px; text-align:right;">
+      <span style="background:#ffd6d6; padding:2px 8px; border-radius:3px;">Best</span>&ensp;
+      <span style="background:#f5d0f5; padding:2px 8px; border-radius:3px;">2nd</span>&ensp;
+      <span style="background:#fafad2; padding:2px 8px; border-radius:3px;">3rd</span>
+    </p>
+
+    <!-- PSF comparison -->
+    <div class="figure-block" style="margin-top:48px;">
+      <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:16px; text-align:left;">PSF Comparison with Prior Work</h3>
+      <img src="images/psfs.png" alt="Simulated PSFs comparison" style="max-width:70%;" />
+      <p class="caption" style="margin-top:12px;">
+        <strong>Simulated PSFs</strong> of MetaTele and prior metasurface imaging systems at identical paraxial image heights. Inset numbers show Strehl ratios. MetaTele intentionally prioritizes sharpness at the 532 nm design wavelength, achieving the highest on-design Strehl ratio and near-uniform PSFs across the full field of view.
+      </p>
+    </div>
+
+    <!-- Optical design simulation -->
+    <div class="figure-block" style="margin-top:48px;">
+      <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:16px; text-align:left;">Optical Design Study</h3>
+      <img src="images/simulation.png" alt="Simulation study of optical design" style="max-width:85%;" />
+      <p class="caption" style="margin-top:12px;">
+        <strong>Simulation study.</strong>
+        (a) Minimum telephoto ratios vs. number of optical elements under three scenarios: full-spectrum refractive, single-wavelength refractive, and hybrid refractive+metasurface. (b) Optimized assembly with 4 lenses + metasurface reaching telephoto ratio 0.17. (c) Optical performance vs. lateral perturbation: the hybrid system maintains high Strehl ratio even when the eyepiece is displaced by 0.02 mm, while the purely refractive counterpart degrades sharply.
+      </p>
+    </div>
+
+    <!-- Continuous zoom -->
+    <div class="figure-block" style="margin-top: 48px;">
+      <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:16px; text-align:left;">Continuous Zoom Capability</h3>
+      <img src="images/continuous_zoom.png" alt="Continuous zoom from 20 to 50 mm" />
+      <p class="caption" style="margin-top:12px;">
+        MetaTele supports continuous zoom from 20 to 50 mm equivalent focal length by adjusting the separation between the objective and metasurface eyepiece, all without changing lenses.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BibTeX ===== -->
+<section id="bibtex">
+  <div class="container">
+    <h2 class="section-title">Citation</h2>
+    <p class="section-subtitle">If you find this work useful, please cite:</p>
+    <div class="bibtex-block">
+      <button class="copy-btn">Copy</button>
+      <code>@article{weligampola2025metatele,
+  title     = {MetaTele: Compact Refractive Metasurface Computational Telephoto Camera},
+  author    = {Weligampola, Harshana and Chen, Yuanrui and Gnanasambandam, Abhiram
+               and Godaliyadda, Dilshan and Sheikh, Hamid R. and Chan, Stanley H.
+               and Guo, Qi},
+  journal   = {Optica},
+  year      = {2025},
+  note      = {Update with DOI when available}
+}</code>
+    </div>
+
+    <div class="info-pills" style="margin-top:32px;">
+      <span class="pill"><strong>Funding:</strong> Samsung Research America Global Research Outreach &amp; NSF Grant CCF-2431505</span>
+      <span class="pill"><strong>Fabrication:</strong> SNOChip Inc.</span>
+      <span class="pill"><strong>Dataset:</strong> 2,650 real-world paired scenes (Flickr2K basis)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <p>
+      MetaTele · Purdue University ECE &amp; Samsung Research America<br>
+      Website template inspired by <a href="https://github.com/xuweiwen/blurryedges" target="_blank" rel="noopener">BlurryEdges</a>.
+      Page built with plain HTML/CSS/JS — no frameworks.
+    </p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
