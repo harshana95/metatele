@@ -51,3 +51,14 @@ slurm-*.out
 # TensorBoard / W&B
 runs/
 wandb/
+
+# Dev artifacts
+.claude/
+images/raw_p1.png
+images/freq_p1.png
+images/freq_col*.png
+images/freq_Is*.png
+images/freq_Ours*.png
+images/teaser_*.png
+images/abl_*_try.png
+images/colorcue_abl_thumb.jpg
