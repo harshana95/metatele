@@ -110,7 +110,7 @@ bash scripts/calculate_metrics.sh <pred_dir> <gt_dir>
 | `timestep` | 999 | One-step diffusion timestep |
 | `lambda_l2` | 10.0 | Pixel L2 loss weight |
 | `lambda_lpips` | 2.0 | Perceptual loss weight |
-| `lambda_chroma` | 200.0 | YCbCr chroma loss weight |
+| `lambda_chroma` | 2.0 | YCbCr chroma loss weight |
 | `lambda_kl` | 1.0 | VSD/KL loss weight |
 | `cfg_vsd` | 7.5 | Classifier-free guidance for VSD |
 | `learning_rate` | 1e-5 | Adam learning rate |
@@ -122,10 +122,10 @@ Mono dataset uses `select_channels: [False, True, False]` to keep only the green
 ## Citation
 
 ```bibtex
-@article{metazoom2026,
-  title={MetaZoom: [Paper Title]},
-  author={[Authors]},
-  journal={[Venue]},
+@article{2026metatele,
+  title={MetaTele: Compact Refractive Metasurface Computational Telephoto Camera},
+  author={Weligampola, Harshana and Chen, Yuanrui and Gnanasambandam, Abhiram and Godaliyadda, Dilshan and Sheikh, Hamid R and Chan, Stanley H and Guo, Qi},
+  journal={arXiv preprint arXiv:2604.07614},
   year={2026}
 }
 ```
